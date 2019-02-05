@@ -8,13 +8,10 @@
 # be cloned into the docker container along with the
 # model.
 
-# Created by George Kampolis
+# It is assumed that the script is called from `RunAPI.R`,
+# and that the relevant packages (mlr and plumbr) are loaded.
 
-
-# Load packages -----------------------------------------------------------
-
-library(mlr)
-library(plumber)
+# Created by George Kampolis.
 
 
 # Load Model And Data Set -------------------------------------------------
