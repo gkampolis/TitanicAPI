@@ -21,4 +21,21 @@ titanicModel <- readRDS("model/titanicModel.rds")
 titanicNewData <- readRDS("model/titanicNewData.rds")
 
 
-# predict(object = titanicModel, newdata = titanic)
+# Prediction API ----------------------------------------------------------
+
+
+#' Predict survival on the titanic
+#' @param pClass Class of passenger
+#' @param pSex Sex of passenger
+#' @param pAge Age of passenger in years
+#' @param pFare Fare paid by passenger in £
+#' @param pFamily No. of family members on board
+#' @get /titanic
+function(pClass, pSex, pAge, pFare, pFamily){
+  titanicNewData$class[1] <- as.factor(pClass)
+  titanicNewData$sex[1] <- as.factor(pSex)
+  titanicNewData$age[1] <- as.numeric(pAge)
+  titanicNewData$fare[1] <- as.numeric(pFare)
+  titanicNewData$familyOnBoard <- as.integer(pFamily)
+  predict(object = titanicModel, newdata = titanicNewData)
+}
