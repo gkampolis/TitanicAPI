@@ -14,6 +14,8 @@
 
 # Load Model, Data Set and Validation Function ----------------------------
 
+library(mlr)
+
 titanicModel <- readRDS("model/titanicModel.rds")
 
 titanicNewData <- readRDS("model/titanicNewData.rds")

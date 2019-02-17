@@ -2,6 +2,9 @@
 # Intro Comments ----------------------------------------------------------
 
 # This script creates the model to be accessed by the API later.
+# It is intended to be run only once and is not needed for production.
+# The resulting API and model can be tested locally from within R from
+# `runAPI.R`.
 
 # Created by George Kampolis
 
