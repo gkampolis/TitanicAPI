@@ -46,7 +46,7 @@ function(pClass, pSex, pAge, pFare, pFamily){
     titanicNewData$age[1] <<- as.numeric(pAge)
     titanicNewData$fare[1] <<- as.numeric(pFare)
     titanicNewData$familyOnBoard <<- as.integer(pFamily)
-    pred <- predict(object = titanicModel, newdata = titanicNewData)
+    pred <- predict(object = titanicModel, newdata = as.data.frame(titanicNewData))
     return(as.data.frame(pred))
   } else {
     return(valResult)
