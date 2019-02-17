@@ -41,8 +41,8 @@ function(pClass, pSex, pAge, pFare, pFamily){
   
   # make predictions if valid parameters are supplied ----
   if(isTRUE(valResult)){
-    titanicNewData$class[1] <<- as.factor(pClass)
-    titanicNewData$sex[1] <<- as.factor(pSex)
+    titanicNewData$class[1] <<- factor(pClass, levels=levels(titanicNewData$class))
+    titanicNewData$sex[1] <<- factor(pSex, levels=levels(titanicNewData$sex))
     titanicNewData$age[1] <<- as.numeric(pAge)
     titanicNewData$fare[1] <<- as.numeric(pFare)
     titanicNewData$familyOnBoard <<- as.integer(pFamily)
