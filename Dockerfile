@@ -2,7 +2,7 @@ FROM trestletech/plumber
 LABEL maintainer="George Kampolis <gkampolis@outlook.com>"
 
 ###########################################################
-# Add mlr on top of plumber
+# Add mlr on top of plumber for Naive Bayes
 ###########################################################
 
 # Add libxml2-dev for the `XML` package (line 26).
@@ -28,7 +28,10 @@ XML
 # Add mlr itself
 RUN install2.r -e -s mlr
 
-##########################################################
+# Add e1071 required for Naive Bayes classifier
+RUN install2.r -e -s e1071
+
+###########################################################
 # Copy API files
 ###########################################################
 
@@ -41,15 +44,26 @@ COPY model/* \
 /home/docker/api/model/
 
 # Ensure permissions of user `docker`
-# RUN chown docker:docker /home/docker
+RUN chown docker:docker /home/docker/*
 
 # Designate which R script to plumb.
+WORKDIR /home/docker/api
 
-CMD ["/home/docker/api/mainAPI.R"]
+CMD ["mainAPI.R"]
 
-# Build with: `docker build -t my_r_api .` (Note the dot at the end)
+###########################################################
+# How To
+###########################################################
 
-# Run with: `docker run --rm --user docker -p 8000:8000 my_r_api` (defaults to `/api/mainAPI.R`)
+# Run with: `docker run --rm --user docker -p 8000:8000 titanic_api` (defaults to `/api/mainAPI.R`)
 # See results on http://localhost:8000/titanic
 
-# You can have a look around with `docker run -it --rm --entrypoint /bin/bash my_r_api`.
+# Example query:
+# `http://localhost:8000/titanic?pClass=2&pSex=male&pAge=70&pFare=125&pFamily=0`
+# Example response (JSON):
+# [{"prob.FALSE":0.0479,"prob.TRUE":0.9521,"response":"TRUE"}]
+
+# You can have a look around inside the image with
+# `docker run -it --rm --entrypoint /bin/bash titanic_api`.
+
+# Build with: `docker build -t titanic_api .` (Note the dot at the end)
