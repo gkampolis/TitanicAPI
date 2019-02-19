@@ -12,6 +12,10 @@
 # Load packages -----------------------------------------------------------
 
 # Ensure correct path:
+# here::here() # if `here` is installed
+
+# Typically, double-clicking on the .Rproj file
+# should set the directory correctly.
 
 getwd()
 
@@ -33,7 +37,7 @@ names(titanic) <- c("survived",
                     "fare"
                   )
 
-# specify types when needed, read_csv assigns only characters and doubles.
+# Specify types when needed, read_csv assigns only characters and doubles.
 
 titanic %<>% mutate(
   survived=as.logical(survived),
@@ -52,10 +56,9 @@ titanic %<>% mutate(familyOnBoard = siblingsSpouses + parentsChildren)
 
 # Finalize Data Set For `mlr` ---------------------------------------------
 
-# The names column only complicates things. For our purposes, there's
-# no need to retrieve name information later, so no need to keep the
-# name column. Furthermore, drop age and features replaced by the
-# "familyOnBoard".
+# The names column only complicates things. For our purposes, there's no need
+# to retrieve name information later, so no need to keep the name column.
+# Furthermore, drop features replaced by the "familyOnBoard".
 
 titanic %<>% select(- name, - siblingsSpouses, - parentsChildren)
 
@@ -63,7 +66,7 @@ titanic %<>% select(- name, - siblingsSpouses, - parentsChildren)
 
 set.seed(2018)
 
-## Create calssficiation task
+## Create classficiation task
 
 titanicTask <- makeClassifTask(data = titanic,
                                target = "survived",
@@ -94,7 +97,16 @@ titanicModel <- resample(titanicLearner,
                          acc,
                          show.info = FALSE)
 
-mean(titanicModel$measures.test$acc) # approx. 78.02%
+summary(titanicModel$measures.test$acc)
+
+#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+# 0.6111  0.7549  0.7778  0.7802  0.8068  0.8876 
+
+# boxplot(titanicModel$measures.test$acc) 
+# the boxplot shows that the 61% accuracy is a distant outlier.
+
+# also see:
+# hist(titanicModel$measures.test$acc, breaks = "Scott")
 
 ## Train final model on all available data
 
@@ -108,9 +120,17 @@ titanicModel <- train(learner = titanicLearner,
 
 saveRDS(titanicModel, file = "model/titanicModel.rds")
 
-## for convenience, export one row of the data set, which includes all
+## For convenience, export one row of the data set, which includes all
 ## information regarding factors etc.
 
 titanicNewData <- titanic %>% select(-survived) %>% head(n = 1)
 
 saveRDS(titanicNewData, file = "model/titanicNewData.rds")
+
+
+# Clean Up ----------------------------------------------------------------
+
+rm(titanic, titanicNewData,
+   titanicCV, titanicLearner,
+   titanicModel, titanicTask
+   )

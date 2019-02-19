@@ -1,6 +1,17 @@
-# Load require packages. If any are missing (see warnings in console),
-# you can install them with install.packages("packageName").
+# Intro Comments ----------------------------------------------------------
 
+# Helper script to load required packages for model creation. Used in
+# `createModel.R`. The user receives a warning and instructions in the console
+# if any packages are missing. Otherwise, the packages are loaded normally. If
+# the required packages are missing, they are not installed automatically in
+# case the user wants to manage their library and dependencies manually.
+
+# Created by George Kampolis.
+
+
+# Script ------------------------------------------------------------------
+
+# PAckages to be loaded:
 pkgs <- c(
   "dplyr",
   "readr",

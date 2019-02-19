@@ -3,7 +3,7 @@
 # This script contains a helper function to validate the parameters passed to
 # the model. It should be placed in the model folder, accompanying the actual
 # model and the new data dataframe. The script is sourced (and its function
-# utilised) in the "MainAPI.R"script, in the root folder.
+# utilised) in the "mainAPI.R"script, in the root folder.
 
 # Created by George Kampolis.
 
