@@ -6,6 +6,10 @@
 # `valParams.R`. Note that there is no restriction as to where the model was
 # run, the files can be cloned later if desired into the docker container.
 
+# Endpoints: 
+# "/" : used for a simple html welcome screen.
+# "/titanic" : used to serve predictions. 
+
 # It is assumed that the script is called from `runAPI.R`, and that the
 # relevant packages (mlr and plumbr) are loaded.
 
@@ -52,3 +56,57 @@ function(pClass, pSex, pAge, pFare, pFamily){
     return(valResult)
   }
 }
+
+
+
+# Intro Page --------------------------------------------------------------
+
+# Simple into page just to give an idea of what's going.
+
+#' Welcome to the Titanic API
+#' @get /
+#' @html
+
+function() {
+  title <- "Titanic API"
+  bodyIntro <-  "Welcome to the Titanic API!"
+  bodyMsg <- paste("To receive a prediction on survival probability,", 
+                     "submit the following variables to the <b>/titanic</b> endpoint:",
+                     sep = "\n")
+  varList <- list(
+  pClass = "pClass (passenger's class): 1, 2, 3 (Ticket Class: 1st, 2nd, 3rd).",
+  pSex = "pSex, either female or male",
+  pAge = "pAge, in years.",
+  pFare = "pFare, in pounds.",
+  pFamily = "pFamilyt, other family members on board - must be integer.",
+  gap = "",
+  reponse = paste("Successful submission will result in a json return of",
+                  " survival (response TRUE) or not (response FALSE) and",
+                  " overall prediction (with a simple 50% threshold).",
+                  sep = "\n"
+                  )
+  )
+  bodyReqs <- paste(varList, collapse = "<br>")
+  exampleQuery <- paste("<b>Example query:</b>",
+                        "...:8000/titanic?pClass=2&pSex=male&pAge=70&pFare=125&pFamily=0",
+                        "<b> Expected response:</b>",
+                        '[{"prob.FALSE":0.0479,"prob.TRUE":0.9521,"response":"TRUE"}]',
+                        sep = "\n"
+                        )
+  
+  result <- paste(
+    "<html>",
+    "<h1>", title, "</h1>", "<br>",
+    "<body>", 
+    "<p>", bodyIntro, "</p>",
+    "<p>", bodyMsg, "</p>",
+    "<p>", bodyReqs, "</p>",
+    "<p>", exampleQuery, "</p>",
+    "</body>",
+    "</html>",
+    collapse = "\n"
+  )
+  
+  return(result)
+}
+

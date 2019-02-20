@@ -148,7 +148,7 @@ saveRDS(titanicModel, file = "model/titanicModel.rds")
 ## For convenience, export one row of the data set, which includes all
 ## information regarding factors etc.
 
-titanicNewData <- titanic %>% select(-survived) %>% head(n = 1)
+titanicNewData <- titanic %>% select(-survived) %>% head(n = 1) %>% as.data.frame()
 
 saveRDS(titanicNewData, file = "model/titanicNewData.rds")
 
