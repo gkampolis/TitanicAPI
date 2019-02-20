@@ -104,18 +104,34 @@ titanicModel <- resample(titanicLearner,
                               ),
                          show.info = FALSE)
 
+calculateConfusionMatrix(titanicModel$pred)
+#           predicted
+# true     FALSE TRUE -err.-
+# FALSE  10052  848    848
+# TRUE    3051 3789   3051
+# -err.-  3051  848   3899
+
 titanicModel$aggr # Show measures
 
-# acc.test.mean       ppv.test.mean       tpr.test.mean       auc.test.mean 
-# 0.7787430           0.8169804           0.5527605           0.8346610 
-# kappa.test.mean     f1.test.mean        timetrain.test.mean 
-# 0.5024230           0.6554890           0.0047000 
+# acc.test.mean       ppv.test.mean 
+# 0.7802483           0.8196398 
+# tpr.test.mean       auc.test.mean 
+# 0.5540714           0.8353770 
+# kappa.test.mean     f1.test.mean 
+# 0.5056464           0.6573248 
+# timetrain.test.mean 
+# 0.0035500 
 
-# High AUC but relativily low F1 shows we can do better with a different
-# classifier. Accuracy isn't to be heavily relied upon, due to the somewhat
-# unbalanced data set. However the aim of this project is not to go for best
-# results but to build an API. This classifier will do for our purposes as a
-# proof of concept.
+# High AUC but relativily low F1 shows we might be able to do better with
+# differet threshold or different classifier. Good precision is reassuring in
+# that the cases which were identified as positive (i.e. survived) the
+# classifier got many of them right. Accuracy isn't to be heavily relied upon,
+# due to the somewhat unbalanced data set. Somewhat poor recall is expected due
+# to unbalanced data sets (obvious in the confusion matrix and high observed
+# false negatives).
+
+# However the aim of this project is not to go for best results but to build an
+# API. This classifier will do for our purposes as a proof of concept.
 
 ## Train final model on all available data
 
