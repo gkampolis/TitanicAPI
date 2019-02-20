@@ -94,19 +94,28 @@ titanicCV <- makeResampleDesc("RepCV",
 titanicModel <- resample(titanicLearner,
                          titanicTask,
                          titanicCV,
-                         acc,
+                         list(acc, # accuracy
+                              ppv, # precision
+                              tpr, # recall/sensitivity
+                              auc, # Area Under the Curve
+                              kappa, 
+                              f1,  # F1 score / F-measure
+                              timetrain
+                              ),
                          show.info = FALSE)
 
-summary(titanicModel$measures.test$acc)
+titanicModel$aggr # Show measures
 
-#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-# 0.6111  0.7549  0.7778  0.7802  0.8068  0.8876 
+# acc.test.mean       ppv.test.mean       tpr.test.mean       auc.test.mean 
+# 0.7787430           0.8169804           0.5527605           0.8346610 
+# kappa.test.mean     f1.test.mean        timetrain.test.mean 
+# 0.5024230           0.6554890           0.0047000 
 
-# boxplot(titanicModel$measures.test$acc) 
-# the boxplot shows that the 61% accuracy is a distant outlier.
-
-# also see:
-# hist(titanicModel$measures.test$acc, breaks = "Scott")
+# High AUC but relativily low F1 shows we can do better with a different
+# classifier. Accuracy isn't to be heavily relied upon, due to the somewhat
+# unbalanced data set. However the aim of this project is not to go for best
+# results but to build an API. This classifier will do for our purposes as a
+# proof of concept.
 
 ## Train final model on all available data
 
