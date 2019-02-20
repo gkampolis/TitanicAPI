@@ -1,8 +1,5 @@
 # TitanicAPI
 
-![](https://images.microbadger.com/badges/version/gkampolis/titanic_api.svg)
-![](https://images.microbadger.com/badges/image/gkampolis/titanic_api.svg)
-
 Pet project for creating a model with the Titanic data set and deploying it as an API through Docker.
 
 :warning: Please note that this is a work in progress.
@@ -58,7 +55,7 @@ Naïve-Bayes assumes Gaussian distribution for non-categorical features.
 
 #### Family members on board
 
-While the feature is obviously discrete/nominal, it has been left as a numerical to be able to predict previously unseen combinations.
+While the feature is obviously an ordinal (and equally spaced by one person at a time), it has been left as a numerical to be able to predict previously unseen combinations. During input validation, it is ensured that an integer is passed to the model.
 
 | Family |  mean | std. deviation |
 |:------:|:-----:|:--------------:|
