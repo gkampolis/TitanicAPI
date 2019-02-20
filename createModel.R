@@ -68,7 +68,7 @@ set.seed(2018)
 
 ## Create classficiation task
 
-titanicTask <- makeClassifTask(data = titanic,
+titanicTask <- makeClassifTask(data = as.data.frame(titanic),
                                target = "survived",
                                positive = "TRUE"
                                )
