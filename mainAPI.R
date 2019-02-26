@@ -78,7 +78,7 @@ function() {
   pSex = "pSex, either female or male",
   pAge = "pAge, in years.",
   pFare = "pFare, in pounds.",
-  pFamily = "pFamilyt, other family members on board - must be integer.",
+  pFamily = "pFamily, other family members on board - must be integer.",
   gap = "",
   reponse = paste("Successful submission will result in a json return of",
                   " survival (response TRUE) or not (response FALSE) and",
@@ -88,7 +88,7 @@ function() {
   )
   bodyReqs <- paste(varList, collapse = "<br>")
   exampleQuery <- paste("<b>Example query:</b>",
-                        "...:8000/titanic?pClass=2&pSex=male&pAge=70&pFare=125&pFamily=0",
+                        ".../titanic?pClass=2&pSex=male&pAge=70&pFare=125&pFamily=0",
                         "<b> Expected response:</b>",
                         '[{"prob.FALSE":0.0479,"prob.TRUE":0.9521,"response":"TRUE"}]',
                         sep = "\n"
