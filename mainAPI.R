@@ -2,7 +2,7 @@
 
 # This script loads the model and sets up the API. It assumes that
 # `createModel.R` has already been run and that the model and dataframe are
-# present in the `model`` folder, along with the parameter validation script
+# present in the `model` folder, along with the parameter validation script
 # `valParams.R`. Note that there is no restriction as to where the model was
 # run, the files can be cloned later if desired into the docker container.
 

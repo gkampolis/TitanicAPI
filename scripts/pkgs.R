@@ -11,7 +11,7 @@
 
 # Script ------------------------------------------------------------------
 
-# PAckages to be loaded:
+# Packages to be loaded:
 pkgs <- c(
   "dplyr",
   "readr",

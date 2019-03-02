@@ -11,15 +11,15 @@
 # Validate Function -------------------------------------------------------
 
 valParams <- function(pClass, pSex, pAge, pFare, pFamily){
-  # validate parameters received ----
-  ## initialize flags for validation ----
+
+  ## initialize flags for validation
   correctClass <- FALSE
   correctSex <- FALSE
   correctAge <- FALSE
   correctFare <- FALSE
   correctFamily <- FALSE
   
-  ## validate pClass ----
+  ## validate pClass
   if(missing(pClass)){
     return("Parameter `pClass` is required.")
   } else if(!all.equal(as.numeric(pClass), as.integer(pClass))){
@@ -30,7 +30,7 @@ valParams <- function(pClass, pSex, pAge, pFare, pFamily){
     correctClass <- TRUE
   }
   
-  ## validate pSex ----
+  ## validate pSex
   if(missing(pSex)){
     return("Parameter `pSex` is required.")
   } else if(!(as.character(pSex) %in% c("male", "female"))){
@@ -39,7 +39,7 @@ valParams <- function(pClass, pSex, pAge, pFare, pFamily){
     correctSex <- TRUE
   }
   
-  ## validate pAge ----
+  ## validate pAge
   if(missing(pAge)){
     return("Parameter `pAge` is required.")
   } else if(!is.numeric(as.numeric(pAge))){
@@ -50,7 +50,7 @@ valParams <- function(pClass, pSex, pAge, pFare, pFamily){
     correctAge <- TRUE
   }
   
-  ## validate pFare ----
+  ## validate pFare
   if(missing(pFare)){
     return("Paramer `pFare` is required.")
   } else if(!is.numeric(as.numeric(pFare))){
@@ -61,7 +61,7 @@ valParams <- function(pClass, pSex, pAge, pFare, pFamily){
     correctFare <- TRUE
   }
   
-  ## validate pFamily ----
+  ## validate pFamily
   if(missing(pFamily)){
     return("Parameter `pFamily` is required.")
   } else if(!all.equal(as.numeric(pFamily), as.integer(pFamily))){
