@@ -47,15 +47,16 @@ COPY model/* \
 RUN chown docker:docker /home/docker/*
 
 # Designate which R script to plumb.
+
 WORKDIR /home/docker/api
 
 CMD ["mainAPI.R"]
 
 ###########################################################
-# How To
+# How To (when running locally)
 ###########################################################
 
-# Run with: `docker run --rm --user docker -p 8000:8000 titanic_api` (defaults to `/api/mainAPI.R`)
+# Run locally with: `docker run --rm --user docker -p 8000:8000 titanic_api` (defaults to `/api/mainAPI.R`)
 # See results on http://localhost:8000/titanic
 
 # Example query:
