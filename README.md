@@ -1,6 +1,11 @@
 # TitanicAPI
 
 Pet project to explore the "Model-as-a-Service" concept via API creation.
+Dockere image available [here](https://hub.docker.com/r/gkampolis/titanic_api).
+
+![](https://images.microbadger.com/badges/image/gkampolis/titanic_api.svg)
+
+![](https://images.microbadger.com/badges/version/gkampolis/titanic_api.svg)
 
 ## Overview
 
@@ -17,7 +22,7 @@ HTTPS can be set via the platform of delivery (tested with Microsoft Azure) inst
 
 It is assumed that the model is created locally, by sourcing the [createModel.R](/createModel.R). The API itself needs only the the final model and one row of example data (which contains all relevant metadata), which are both stored as `.rds` files inside the `model` folder, along with the parameter validation function contained in `valParams.R`, already inside the `model` folder.
 
-## Running the API locally 
+## Running the API locally (without Docker)
 
 To test the API locally (without the Docker container), assuming that both `plumber` and  `mlr` packages are installed, all that is needed is to source the `runAPI.R` script, which will automatically plumb `mainAPI.R`.
 
@@ -29,9 +34,19 @@ The `/titanic` endpoint handles the actual prediction. The parameters to be pass
 
 * Example response: `[{"prob.FALSE":0.0479,"prob.TRUE":0.9521,"response":"TRUE"}]`
 
+## Running the API locally (with Docker)
+
+If you've builded the Docker container (or pulled it from [here](https://hub.docker.com/r/gkampolis/titanic_api)), then you don't need to have an R installation - that's already taken care of via the container, with all the necessary packages installed.
+
+Simply
+* run locally with: `docker run --rm --user docker -p 8000:8000 titanic_api`
+* and see results on http://localhost:8000/
+
+For an example query and responce, see the [previous section](#running-the-api-locally).
+
 ## Running the API from a hosted container
 
-Simply navigate to the URL for the container. That should load the introductory page. Appending `/titanic?...` as above should result in the expected behaviour (see previous section), as the API maps to the endpoints directly, withotu any need for further manual configuration or routing.
+Simply navigate to the URL for the container. That should load the introductory page. Appending `/titanic?...` as above should result in the expected behaviour ([see the running locally section](#running-the-api-locally)), as the API maps to the endpoints directly, without any need for further manual configuration or routing.
 
 ## Data Provenance
 
@@ -41,7 +56,7 @@ Data was acquired from Stanford's CS109 publicly accessible page [here](http://w
 
 It is assumed that the container would be onine behind other security measures such as user authentication and HTTPS. The container itself validates the parameters passed to it (thus avoiding the most obvious security breach) but does not implement other security features. However, such measures are easilly implemented and usually already in place. Container hosting services may also offer solutions as well (as mentioned above, tested with Microsoft Azure).
 
-If needed, HTTPS can be implemented via the container by including an apache server and the necessary certificates. For an example of such an implementation, see [T-mobile's project](https://github.com/tmobile/r-tensorflow-api).
+If needed, HTTPS can be implemented via the container by including an apache server and the necessary certificates. For an example of such an implementation, see [T-mobile's repository](https://github.com/tmobile/r-tensorflow-api).
 
 ## Naïve-Bayes probabilities from the Titanic dataset used
 
