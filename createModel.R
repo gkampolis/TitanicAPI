@@ -80,9 +80,8 @@ titanicLearner <- makeLearner("classif.naiveBayes",
                               predict.type = "prob",
                               predict.threshold = 0.5)
 
-## Naive Bayes predictions will not change unless the features
-## available or the data changes. Therefore the repeated CV
-## serves only as an indication of accuracy for the
+## Naive Bayes predictions will not change unless the features available or the
+## data change. Therefore the repeated CV serves only to provide context for the
 ## aforementioned threshold.
 
 titanicCV <- makeResampleDesc("RepCV",
