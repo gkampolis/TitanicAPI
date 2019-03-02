@@ -1,11 +1,8 @@
 # TitanicAPI
 
 Pet project to explore the "Model-as-a-Service" concept via API creation.
-Dockere image available [here](https://hub.docker.com/r/gkampolis/titanic_api).
 
-![](https://images.microbadger.com/badges/image/gkampolis/titanic_api.svg)
-
-![](https://images.microbadger.com/badges/version/gkampolis/titanic_api.svg)
+Docker image available [here](https://hub.docker.com/r/gkampolis/titanic_api). ![](https://images.microbadger.com/badges/image/gkampolis/titanic_api.svg) ![](https://images.microbadger.com/badges/version/gkampolis/titanic_api.svg)
 
 ## Overview
 
