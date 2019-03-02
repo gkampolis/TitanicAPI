@@ -57,7 +57,7 @@ CMD ["mainAPI.R"]
 ###########################################################
 
 # Run locally with: `docker run --rm --user docker -p 8000:8000 titanic_api` (defaults to `/api/mainAPI.R`)
-# See results on http://localhost:8000/titanic
+# See results on http://localhost:8000/
 
 # Example query:
 # `http://localhost:8000/titanic?pClass=2&pSex=male&pAge=70&pFare=125&pFamily=0`
