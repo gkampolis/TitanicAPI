@@ -1,7 +1,7 @@
 # TitanicAPI
 
 Pet project to explore the "Model-as-a-Service" concept via API creation.
-Dockere image available [here](https://hub.docker.com/r/gkampolis/titanic_api).
+Docker image available [here](https://hub.docker.com/r/gkampolis/titanic_api).
 
 ![](https://images.microbadger.com/badges/image/gkampolis/titanic_api.svg)
 
@@ -12,11 +12,11 @@ Dockere image available [here](https://hub.docker.com/r/gkampolis/titanic_api).
 Pet project for creating a simple Naïve Bayes classifier with the Titanic data set (as an example) and deploying it as an API through Docker and a container-hosting service.
 
 This project is heavily dependent on two R packages:
+
 * `plumber`, for creating the API with R --- see more [here](https://www.rplumber.io/)
 * `mlr`, to create and use the model --- see more [here](https://mlr.mlr-org.com/)
 
-HTTPS can be set via the platform of delivery (tested with Microsoft Azure) instead of burdening the Docker container with a server. However, it is straightforward to intergrate an apache server with custom certificates. See the [security note](#A-note-regarding-security) below for more information.
-
+HTTPS can be set via the platform of delivery (tested with Microsoft Azure) instead of burdening the Docker container with a server. However, it is straightforward to integrate an apache server with custom certificates. See the [security note](#A-note-regarding-security) below for more information.
 
 ## Model Creation
 
@@ -28,7 +28,7 @@ To test the API locally (without the Docker container), assuming that both `plum
 
 You should be able to find the basic introductory page at http://localhost:8000.
 
-The `/titanic` endpoint handles the actual prediction. The parameters to be passed into the model are included in the request itself for simplicity. The pattern is `/titanic?param1=value1&param2=value2`. 
+The `/titanic` endpoint handles the actual prediction. The parameters to be passed into the model are included in the request itself for simplicity. The pattern is `/titanic?param1=value1&param2=value2`.
 
 * Example query: http://localhost:8000/titanic?pClass=2&pSex=male&pAge=70&pFare=125&pFamily=0
 
@@ -36,13 +36,14 @@ The `/titanic` endpoint handles the actual prediction. The parameters to be pass
 
 ## Running the API locally (with Docker)
 
-If you've builded the Docker container (or pulled it from [here](https://hub.docker.com/r/gkampolis/titanic_api)), then you don't need to have an R installation - that's already taken care of via the container, with all the necessary packages installed.
+If you've built the Docker container (or pulled it from [here](https://hub.docker.com/r/gkampolis/titanic_api)), then you don't need to have an R installation - that's already taken care of via the container, with all the necessary packages installed.
 
 Simply
+
 * run locally with: `docker run --rm --user docker -p 8000:8000 titanic_api`
 * and see results on http://localhost:8000/
 
-For an example query and responce, see the [previous section](#running-the-api-locally).
+For an example query and response, see the [previous section](#running-the-api-locally).
 
 ## Running the API from a hosted container
 
@@ -54,7 +55,7 @@ Data was acquired from Stanford's CS109 publicly accessible page [here](http://w
 
 ## A note regarding security
 
-It is assumed that the container would be onine behind other security measures such as user authentication and HTTPS. The container itself validates the parameters passed to it (thus avoiding the most obvious security breach) but does not implement other security features. However, such measures are easilly implemented and usually already in place. Container hosting services may also offer solutions as well (as mentioned above, tested with Microsoft Azure).
+It is assumed that the container would be online behind other security measures such as user authentication and HTTPS. The container itself validates the parameters passed to it (thus avoiding the most obvious security breach) but does not implement other security features. However, such measures are easily implemented and usually already in place. Container hosting services may also offer solutions as well (as mentioned above, tested with Microsoft Azure).
 
 If needed, HTTPS can be implemented via the container by including an apache server and the necessary certificates. For an example of such an implementation, see [T-mobile's repository](https://github.com/tmobile/r-tensorflow-api).
 

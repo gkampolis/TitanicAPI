@@ -6,9 +6,9 @@
 # `valParams.R`. Note that there is no restriction as to where the model was
 # run, the files can be cloned later if desired into the docker container.
 
-# Endpoints: 
+# Endpoints:
 # "/" : used for a simple html welcome screen.
-# "/titanic" : used to serve predictions. 
+# "/titanic" : used to serve predictions.
 
 # It is assumed that the script is called from `runAPI.R`, and that the
 # relevant packages (mlr and plumbr) are loaded.
@@ -39,12 +39,12 @@ source("model/valParams.R")
 #' @param pFamily:int No. of family members on board. Integer.
 #' @get /titanic
 function(pClass, pSex, pAge, pFare, pFamily){
-  
+
   # validate parameters passed
   valResult <- valParams(pClass, pSex, pAge, pFare, pFamily)
-  
+
   # make predictions if valid parameters are supplied ----
-  if(isTRUE(valResult)){
+  if (isTRUE(valResult)) {
     titanicNewData$class[1] <<- factor(pClass, levels=levels(titanicNewData$class))
     titanicNewData$sex[1] <<- factor(pSex, levels=levels(titanicNewData$sex))
     titanicNewData$age[1] <<- as.numeric(pAge)
@@ -70,7 +70,7 @@ function(pClass, pSex, pAge, pFare, pFamily){
 function() {
   title <- "Titanic API"
   bodyIntro <-  "Welcome to the Titanic API!"
-  bodyMsg <- paste("To receive a prediction on survival probability,", 
+  bodyMsg <- paste("To receive a prediction on survival probability,",
                      "submit the following variables to the <b>/titanic</b> endpoint:",
                      sep = "\n")
   varList <- list(
@@ -93,11 +93,11 @@ function() {
                         '[{"prob.FALSE":0.0479,"prob.TRUE":0.9521,"response":"TRUE"}]',
                         sep = "\n"
                         )
-  
+
   result <- paste(
     "<html>",
     "<h1>", title, "</h1>", "<br>",
-    "<body>", 
+    "<body>",
     "<p>", bodyIntro, "</p>",
     "<p>", bodyMsg, "</p>",
     "<p>", bodyReqs, "</p>",
@@ -106,7 +106,7 @@ function() {
     "</html>",
     collapse = "\n"
   )
-  
+
   return(result)
 }
 

@@ -45,7 +45,7 @@ titanic %<>% mutate(
   sex=as.factor(sex),
   siblingsSpouses=as.integer(siblingsSpouses),
   parentsChildren=as.integer(parentsChildren)
-) 
+)
 
 
 
@@ -97,7 +97,7 @@ titanicModel <- resample(titanicLearner,
                               ppv, # precision
                               tpr, # recall/sensitivity
                               auc, # Area Under the Curve
-                              kappa, 
+                              kappa,
                               f1,  # F1 score / F-measure
                               timetrain
                               ),
@@ -112,14 +112,14 @@ calculateConfusionMatrix(titanicModel$pred)
 
 titanicModel$aggr # Show measures
 
-# acc.test.mean       ppv.test.mean 
-# 0.7802483           0.8196398 
-# tpr.test.mean       auc.test.mean 
-# 0.5540714           0.8353770 
-# kappa.test.mean     f1.test.mean 
-# 0.5056464           0.6573248 
-# timetrain.test.mean 
-# 0.0035500 
+# acc.test.mean       ppv.test.mean
+# 0.7802483           0.8196398
+# tpr.test.mean       auc.test.mean
+# 0.5540714           0.8353770
+# kappa.test.mean     f1.test.mean
+# 0.5056464           0.6573248
+# timetrain.test.mean
+# 0.0035500
 
 # High AUC but relativily low F1 shows we might be able to do better with
 # differet threshold or different classifier. Good precision is reassuring in
