@@ -3,10 +3,6 @@
 Pet project to explore the "Model-as-a-Service" concept via API creation.
 Docker image available [here](https://hub.docker.com/r/gkampolis/titanic_api).
 
-![](https://images.microbadger.com/badges/image/gkampolis/titanic_api.svg)
-
-![](https://images.microbadger.com/badges/version/gkampolis/titanic_api.svg)
-
 ## Overview
 
 Pet project for creating a simple Naïve Bayes classifier with the Titanic data set (as an example) and deploying it as an API through Docker and a container-hosting service.
