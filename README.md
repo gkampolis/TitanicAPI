@@ -3,7 +3,7 @@
 Pet project to explore the "Model-as-a-Service" concept via API creation.
 Docker image available [here](https://hub.docker.com/r/gkampolis/titanic_api).
 
-## :warning: This project isn't maintained anymore, the docker app and api may not succesfully run anymore.
+### :warning: This project isn't maintained anymore, the docker app and api may not succesfully run anymore.
 Lots of the underlying packages have undergone through numerous changes since this proof-of-concept was originally created and as such modifications may be needed, in particular with respect to `plumber`'s growth in the last couple of years.
 
 ## Overview
